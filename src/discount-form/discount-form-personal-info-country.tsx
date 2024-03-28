@@ -1,12 +1,14 @@
 import { TextField } from "@mui/material";
 import {
   useDiscountFormAPI,
-  useDiscountFormState,
+  useDiscountFormCountry,
 } from "./discount-form-context";
 
 export function DiscountFormPersonalInfoCountry(): JSX.Element {
-  const { country } = useDiscountFormState();
+  const country = useDiscountFormCountry();
   const { onCountryChange } = useDiscountFormAPI();
+
+  console.log("DiscountFormPersonalInfoCountry rendered");
 
   return (
     <>

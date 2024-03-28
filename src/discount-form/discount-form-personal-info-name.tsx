@@ -1,12 +1,14 @@
 import { TextField } from "@mui/material";
 import {
   useDiscountFormAPI,
-  useDiscountFormState,
+  useDiscountFormName,
 } from "./discount-form-context";
 
 export function DiscountFormPersonalInfoName(): JSX.Element {
-  const { name } = useDiscountFormState();
+  const name = useDiscountFormName();
   const { onNameChange } = useDiscountFormAPI();
+
+  console.log("DiscountFormPersonalInfoName rendered");
 
   return (
     <>

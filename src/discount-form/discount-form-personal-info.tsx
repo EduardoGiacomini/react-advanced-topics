@@ -3,6 +3,8 @@ import { DiscountFormPersonalInfoCountry } from "./discount-form-personal-info-c
 import { DiscountFormPersonalInfoDiscountSituation } from "./discount-form-personal-info-discount-situation";
 
 export function DiscountFormPersonalInfo(): JSX.Element {
+  console.log("DiscountFormPersonalInfo rendered");
+
   return (
     <>
       <DiscountFormPersonalInfoDiscountSituation />

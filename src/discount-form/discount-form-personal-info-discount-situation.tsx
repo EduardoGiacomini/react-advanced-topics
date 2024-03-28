@@ -1,7 +1,9 @@
-import { useDiscountFormState } from "./discount-form-context";
+import { useDiscountFormDiscount } from "./discount-form-context";
 
 export function DiscountFormPersonalInfoDiscountSituation(): JSX.Element {
-  const { discount } = useDiscountFormState();
+  const discount = useDiscountFormDiscount();
+
+  console.log("DiscountFormPersonalInfoDiscountSituation rendered");
 
   return (
     <>

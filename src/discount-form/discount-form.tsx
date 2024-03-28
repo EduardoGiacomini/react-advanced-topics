@@ -5,6 +5,8 @@ import { DiscountFormPersonalInfo } from "./discount-form-personal-info";
 import { FormDataProvider } from "./discount-form-context";
 
 export function DiscountForm(): JSX.Element {
+  console.log("DiscountForm rendered");
+
   return (
     <>
       <FormDataProvider>

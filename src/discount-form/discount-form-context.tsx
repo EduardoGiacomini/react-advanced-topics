@@ -11,10 +11,18 @@ interface API {
   onNameChange: (name: string) => void;
   onCountryChange: (name: string) => void;
   onDiscountChange: (price: number) => void;
-  onSave: () => void;
+  onSave: (values: State) => void;
 }
 
-const DiscountFormDataContext = React.createContext<State>({} as State);
+const DiscountFormNameContext = React.createContext<State["name"]>(
+  {} as State["name"]
+);
+const DiscountFormCountryContext = React.createContext<State["country"]>(
+  {} as State["country"]
+);
+const DiscountFormDiscountContext = React.createContext<State["discount"]>(
+  {} as State["discount"]
+);
 const DiscountFormAPIContext = React.createContext<API>({} as API);
 
 interface FormDataProviderProps {
@@ -31,8 +39,9 @@ export function FormDataProvider(props: FormDataProviderProps) {
   } as State);
 
   const api = useMemo(() => {
-    const onSave = () => {
+    const onSave = (values: State) => {
       // TODO
+      console.log("Save", values);
     };
 
     const onDiscountChange = (discount: number) => {
@@ -57,14 +66,22 @@ export function FormDataProvider(props: FormDataProviderProps) {
 
   return (
     <DiscountFormAPIContext.Provider value={api}>
-      <DiscountFormDataContext.Provider value={state}>
-        {children}
-      </DiscountFormDataContext.Provider>
+      <DiscountFormNameContext.Provider value={state.name}>
+        <DiscountFormCountryContext.Provider value={state.country}>
+          <DiscountFormDiscountContext.Provider value={state.discount}>
+            {children}
+          </DiscountFormDiscountContext.Provider>
+        </DiscountFormCountryContext.Provider>
+      </DiscountFormNameContext.Provider>
     </DiscountFormAPIContext.Provider>
   );
 }
 
-export const useDiscountFormState = () =>
-  React.useContext(DiscountFormDataContext);
+export const useDiscountFormName = () =>
+  React.useContext(DiscountFormNameContext);
+export const useDiscountFormCountry = () =>
+  React.useContext(DiscountFormCountryContext);
+export const useDiscountFormDiscount = () =>
+  React.useContext(DiscountFormDiscountContext);
 export const useDiscountFormAPI = () =>
   React.useContext(DiscountFormAPIContext);

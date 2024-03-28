@@ -1,12 +1,14 @@
 import { Slider } from "@mui/material";
 import {
   useDiscountFormAPI,
-  useDiscountFormState,
+  useDiscountFormDiscount,
 } from "./discount-form-context";
 
 export function DiscountFormCalculation(): JSX.Element {
-  const { discount } = useDiscountFormState();
+  const discount = useDiscountFormDiscount();
   const { onDiscountChange } = useDiscountFormAPI();
+
+  console.log("DiscountFormCalculation rendered");
 
   return (
     <>
