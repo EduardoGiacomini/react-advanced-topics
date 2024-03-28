@@ -1,11 +1,8 @@
 import { Button } from "@mui/material";
+import { useDiscountFormState } from "./discount-form-context";
 
-interface Props {
-  onSave: () => void;
-}
-
-export function DiscountFormActions(props: Props): JSX.Element {
-  const { onSave } = props;
+export function DiscountFormActions(): JSX.Element {
+  const { onSave } = useDiscountFormState();
 
   return (
     <>
