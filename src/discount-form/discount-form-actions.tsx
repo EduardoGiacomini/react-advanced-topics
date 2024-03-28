@@ -1,10 +1,15 @@
 import { Button } from "@mui/material";
 
-export function DiscountFormActions(): JSX.Element {
+interface Props {
+  onSave: () => void;
+}
+
+export function DiscountFormActions(props: Props): JSX.Element {
+  const { onSave } = props;
+
   return (
     <>
-      <Button>Cancel</Button>
-      <Button>Save</Button>
+      <Button onClick={onSave}>Save</Button>
     </>
   );
 }
