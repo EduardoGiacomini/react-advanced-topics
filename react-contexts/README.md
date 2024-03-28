@@ -25,3 +25,8 @@ componente sofre re-render toda vez que qualquer estado se altera.
 Interessante também o uso do useReducer ao invés de múltiplos useStates. O useReducer existe justamente para agregar
 múltiplos estados em somente um. Tem um funcionamento muito legal pois suas mutações são funções puras, logo, escrever
 testes de unidade seria bem fácil! Com certeza uma ótima alternativa para quando estiver usando 3+ useStates!
+
+### Resultado final
+
+https://github.com/EduardoGiacomini/react-advanced-topics/assets/31314944/4f56c717-d44e-4fc7-8d9a-fd38f799fac0
+
