@@ -1,19 +1,19 @@
 import { TextField } from "@mui/material";
+import {
+  useDiscountFormAPI,
+  useDiscountFormState,
+} from "./discount-form-context";
 
-interface Props {
-  name: string;
-  onChange: (name: string) => void;
-}
-
-export function DiscountFormPersonalInfoName(props: Props): JSX.Element {
-  const { name, onChange } = props;
+export function DiscountFormPersonalInfoName(): JSX.Element {
+  const { name } = useDiscountFormState();
+  const { onNameChange } = useDiscountFormAPI();
 
   return (
     <>
       <TextField
         label="First name"
         value={name}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={(e) => onNameChange(e.target.value)}
       />
     </>
   );

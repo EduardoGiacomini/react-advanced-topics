@@ -1,11 +1,7 @@
-interface Props {
-  discount: number;
-}
+import { useDiscountFormState } from "./discount-form-context";
 
-export function DiscountFormPersonalInfoDiscountSituation(
-  props: Props
-): JSX.Element {
-  const { discount } = props;
+export function DiscountFormPersonalInfoDiscountSituation(): JSX.Element {
+  const { discount } = useDiscountFormState();
 
   return (
     <>

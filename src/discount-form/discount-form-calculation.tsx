@@ -1,13 +1,17 @@
 import { Slider } from "@mui/material";
-import { useDiscountFormState } from "./discount-form-context";
+import {
+  useDiscountFormAPI,
+  useDiscountFormState,
+} from "./discount-form-context";
 
 export function DiscountFormCalculation(): JSX.Element {
-  const { state, onDiscountChange } = useDiscountFormState();
+  const { discount } = useDiscountFormState();
+  const { onDiscountChange } = useDiscountFormAPI();
 
   return (
     <>
       <Slider
-        value={state.discount}
+        value={discount}
         onChange={(_, value) => onDiscountChange(value as number)}
         defaultValue={25}
         aria-label="Default"

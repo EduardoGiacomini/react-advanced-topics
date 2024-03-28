@@ -1,19 +1,19 @@
 import { TextField } from "@mui/material";
+import {
+  useDiscountFormAPI,
+  useDiscountFormState,
+} from "./discount-form-context";
 
-interface Props {
-  country: string;
-  onChange: (country: string) => void;
-}
-
-export function DiscountFormPersonalInfoCountry(props: Props): JSX.Element {
-  const { country, onChange } = props;
+export function DiscountFormPersonalInfoCountry(): JSX.Element {
+  const { country } = useDiscountFormState();
+  const { onCountryChange } = useDiscountFormAPI();
 
   return (
     <>
       <TextField
         value={country}
         label="Country"
-        onChange={(e) => onChange(e.target.value)}
+        onChange={(e) => onCountryChange(e.target.value)}
       />
     </>
   );
