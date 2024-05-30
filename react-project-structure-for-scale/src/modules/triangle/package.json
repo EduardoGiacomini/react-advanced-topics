@@ -1,0 +1,9 @@
+{
+  "name": "@app/triangle",
+  "exports": {
+    ".": "./index.ts"
+  },
+  "scripts": {
+    "test": "vitest"
+  }
+}

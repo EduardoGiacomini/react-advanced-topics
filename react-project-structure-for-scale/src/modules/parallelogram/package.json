@@ -1,0 +1,9 @@
+{
+  "name": "@app/parallelogram",
+  "exports": {
+    ".": "./index.ts"
+  },
+  "scripts": {
+    "test": "vitest"
+  }
+}

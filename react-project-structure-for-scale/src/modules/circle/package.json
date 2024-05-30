@@ -1,0 +1,9 @@
+{
+  "name": "@app/circle",
+  "exports": {
+    ".": "./index.ts"
+  },
+  "scripts": {
+    "test": "vitest"
+  }
+}
