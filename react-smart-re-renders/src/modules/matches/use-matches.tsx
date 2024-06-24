@@ -23,13 +23,13 @@ export function useMatches(): Output {
               id: 1,
               homeTeam: { id: 1, name: "Real Madrid", logo: "" },
               awayTeam: { id: 2, name: "Barcelona", logo: "" },
-              score: { id: 1, homeTeamScore: 0, awayTeamScore: 0 },
+              score: { id: 1, homeTeamScore: 99, awayTeamScore: 99 },
             },
             {
               id: 2,
               homeTeam: { id: 3, name: "Liverpool", logo: "" },
               awayTeam: { id: 4, name: "Manchester United", logo: "" },
-              score: { id: 2, homeTeamScore: 0, awayTeamScore: 0 },
+              score: { id: 2, homeTeamScore: 99, awayTeamScore: 99 },
             },
           ]);
         }, 2000);

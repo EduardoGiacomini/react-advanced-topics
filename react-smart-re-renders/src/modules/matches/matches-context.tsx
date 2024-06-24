@@ -1,7 +1,8 @@
 import React, { useMemo } from "react";
-import { Match, MatchScoreBoard } from "./models";
+import { Match } from "./models";
 import { useSetRecoilState } from "recoil";
 import { matchesScoreBoardState } from "./states/matches-scoreboard-state";
+import { WebSocket } from "../../websocket";
 
 export interface State {
   matches: Match[];
@@ -11,7 +12,6 @@ interface API {
   onMatchesChanged: (matches: Match[]) => void;
 }
 
-const MatchesStateContext = React.createContext<State>({} as State);
 const MatchesAPIContext = React.createContext<API>({} as API);
 
 interface Props {
@@ -20,30 +20,40 @@ interface Props {
 
 export function MatchesProvider(props: Props) {
   const { children } = props;
-  const [state, setState] = React.useState<State>({ matches: [] });
   const setMatchesScoreBoardState = useSetRecoilState(matchesScoreBoardState);
 
   const api = useMemo(() => {
     const onMatchesChanged = (matches: Match[]): void => {
-      const matchesScoreboard = new Map<number, MatchScoreBoard>();
-      matches.forEach((match) => {
-        matchesScoreboard.set(match.id, match.score);
-      });
-      setMatchesScoreBoardState(matchesScoreboard);
-      setState({ matches });
+      for (const match of matches) {
+        setMatchesScoreBoardState((prev) => {
+          return new Map(prev).set(match.id, match.score);
+        });
+      }
     };
 
     return { onMatchesChanged };
   }, [setMatchesScoreBoardState]);
 
+  React.useEffect(() => {
+    const webSocket = WebSocket.getInstance();
+    webSocket.connect();
+    webSocket.subscribe("scoreboard", (data) => {
+      console.log(JSON.parse(data as string));
+      api.onMatchesChanged(JSON.parse(data as string));
+      // Websocket should return only updated matches
+    });
+
+    return () => {
+      webSocket.unsubscribe("scoreboard");
+      webSocket.disconnect();
+    };
+  }, [api]);
+
   return (
     <MatchesAPIContext.Provider value={api}>
-      <MatchesStateContext.Provider value={state}>
-        {children}
-      </MatchesStateContext.Provider>
+      {children}
     </MatchesAPIContext.Provider>
   );
 }
 
-export const useMatchesState = () => React.useContext(MatchesStateContext);
 export const useMatchesAPI = () => React.useContext(MatchesAPIContext);

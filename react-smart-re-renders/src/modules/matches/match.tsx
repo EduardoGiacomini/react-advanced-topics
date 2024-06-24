@@ -11,7 +11,8 @@ export function Match(props: Props): JSX.Element {
   return (
     <div>
       <p>
-        {match.homeTeam.name} <MatchScore matchId={match.id} />{" "}
+        {match.homeTeam.name}{" "}
+        <MatchScore scoreDefault={match.score} matchId={match.id} />{" "}
         {match.awayTeam.name}
       </p>
     </div>
